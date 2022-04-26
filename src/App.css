@@ -61,7 +61,7 @@ body{
 
 .black-nav {
   background-color: black;
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   color: white;
   padding: 20px;
@@ -69,6 +69,16 @@ body{
   font-size: 20px;
 }
 
+.image-size {
+  height: 40vmin;
+}
+
+.list {
+  margin-top : 30px;
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
