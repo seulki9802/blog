@@ -17,10 +17,51 @@ function List(props) {
     }
   ]);
 
-  let [up , setUp] = useState(0)
-  function thumbsUp() {
-    setUp( up + 1 )
+  return (
+    <>
+      { props.isShow && <>
+
+        <h3>list name : { props.name }</h3>
+
+        {/* <button onClick={ changeTitle }>1번글 제목 제목 바꾸기</button>
+        <button onClick={ changePostArray }>1번글 2번글 순서 바꾸기</button> */}
+
+        <ChangePostButtons postState={ [post, setPost] } />
+
+        <Post post={ post[0] } />
+        <Post post={ post[1] } />
+        <Post post={ post[2] } />
+
+
+      </> }
+    </>
+  );
+}
+
+List.defaultProps = {
+  name: '이름없음'
+}
+
+
+function Post({ post }) {
+
+  let [number, setNumber] = useState(0)
+
+  function numberUp(){
+    setNumber( number + 1 )
   }
+
+  return(
+    <div className='list'>
+      <h3> { post.title } <span onClick={ numberUp }>👍</span>{ number }</h3>
+      <p> { post.date } 발행</p>
+      <hr/>
+    </div>
+  )
+}
+
+function ChangePostButtons({ postState }) {
+  let [post, setPost] = postState
 
   function changeTitle() {
     var clonePost = {...post};
@@ -36,39 +77,14 @@ function List(props) {
     setPost( clonePost )
   }
 
-  return (
-    <>
-      { props.isShow && <>
-
-        <h3>list name : { props.name }</h3>
-
-        <button onClick={ changeTitle }>1번글 제목 제목 바꾸기</button>
-        <button onClick={ changePostArray }>1번글 2번글 순서 바꾸기</button>
-
-        <Post title={ post[0].title } date= { post[0].date } onClick= { thumbsUp } up = { up } />
-        <Post title={ post[1].title } date= { post[1].date } onClick= { thumbsUp } up = { up } />
-        <Post title={ post[2].title } date= { post[2].date } onClick= { thumbsUp } up = { up } />
-
-
-      </> }
-    </>
-  );
-}
-
-List.defaultProps = {
-  name: '이름없음'
-}
-
-
-function Post(props) {
-
   return(
-    <div className='list'>
-      <h3> { props.title } <span onClick={ props.onClick }>👍</span> { props.up } </h3>
-      <p> { props.date } 발행</p>
-      <hr/>
-    </div>
+    <>
+      <button onClick={ changeTitle }>1번글 제목 제목 바꾸기</button>
+      <button onClick={ changePostArray }>1번글 2번글 순서 바꾸기</button>
+    </>
   )
 }
 
 export default List;
+
+// {/* <span onClick={ { post.onClick } }>👍</span> { { post.up } } */}
