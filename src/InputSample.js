@@ -1,11 +1,13 @@
-import {useState} from 'react';
+import {useState, useRef} from 'react';
 
 function InputSample() {
-  const [inputs, setInputs] = useState({ name: '', nick: '' });
 
-  function onReset() {
-    setInputs({ name: '', nick: '' });
-  }
+  const [inputs, setInputs] = useState({
+    name: '',
+    nick: ''
+  });
+
+  const nameInput = useRef();
 
   const onChange = (e) => {
     const { value, className } = e.target;
@@ -15,9 +17,17 @@ function InputSample() {
     })
   }
 
+  function onReset() {
+    setInputs({
+      name: '',
+      nick: ''
+    });
+    console.log(nameInput)
+  }
+
   return(
     <>
-      <input className='name' placeholder='name' onChange={ onChange } value={ inputs.name } />
+      <input className='name' placeholder='name' onChange={ onChange } value={ inputs.name } ref={ nameInput } />
       <input className='nick' placeholder='nick' onChange={ onChange } value={ inputs.nick } />
       <button onClick={ onReset }>reset</button>
       <div>
