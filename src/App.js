@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import List from './List';
 import Wrapper from './Wrapper';
+import InputSample from './InputSample';
 import './App.css';
 import seulki from './src_assets/seulki.JPG';
 
 function App() {
 
-  let [show, setShow] = useState({ isShow : true, buttonText : '리스트 닫기' })
+  let [show, setShow] = useState({ isShow : false, buttonText : '리스트 보기' })
   function listShow() {
     var cloneShow = {...show};
     cloneShow.isShow = !cloneShow.isShow;
@@ -24,12 +25,14 @@ function App() {
       </div>
 
       <img src={ seulki } className="image-size" alt="seulki" /><br/>
+      <InputSample />
 
-      <button onClick={ listShow }>{ show.buttonText }</button>
 
       <Wrapper>
+        <button onClick={ listShow }>{ show.buttonText }</button>
         <List name="suelki's list" isShow={ show.isShow }/>
       </Wrapper>
+
       <Modal />
 
 
