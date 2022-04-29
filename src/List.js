@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-function List({ postsState }) {
+function List({ postsState, onRemove, onToggle }) {
 
   let [posts, setPosts] = postsState;
 
@@ -24,7 +24,7 @@ function List({ postsState }) {
         <InputPostTitle postsState={ [posts, setPosts] } />
 
         { posts.map((post) => {
-          return <Post post={ post } key={ post.id.toString() }/>
+          return <Post post={ post } key={ post.id.toString() } onRemove={ onRemove } onToggle={ onToggle }/>
         }) }
 
       </> }
@@ -38,7 +38,7 @@ function List({ postsState }) {
 // }
 
 
-function Post({ post }) {
+function Post({ post, onRemove, onToggle }) {
 
   let [number, setNumber] = useState(0)
   function numberUp(){
@@ -47,9 +47,14 @@ function Post({ post }) {
 
   return(
     <div className='list'>
-      <h3> { post.title } <span onClick={ numberUp }>👍</span>{ number }</h3>
+      <h3>
+        <b onClick={ () => onToggle(post.id) } style={ { cursor : 'pointer', color : post.active ? 'green' : 'black' } }>
+          { post.title }
+        </b>
+        <span onClick={ numberUp }>👍</span>{ number }
+      </h3>
       <p> { post.date } 발행</p>
-      <p> id: { post.id }</p>
+      <p> id: { post.id } <span onClick={ () => onRemove(post.id) }>삭제❌</span></p>
       <hr/>
     </div>
   )

@@ -10,19 +10,22 @@ function App() {
 
   let [posts, setPosts] = useState([
     {
+      id : 0,
       title : '나주 전망대',
       date : '7월 8일',
-      id : 0
+      active : true
     },
     {
+      id : 1,
       title : '전주 삼겹살 맛집',
       date : '11월 3일',
-      id : 1
+      active : false
     },
     {
+      id : 2,
       title : '군산 장미 칼국수',
       date : '3월 1일',
-      id : 2
+      active : false
     }
   ]);
 
@@ -44,9 +47,10 @@ function App() {
   let onCreate = () => {
 
     var post = {
+      id : nextId.current,
       title : inputs.title,
       date : inputs.date,
-      id : nextId.current
+      active : false
     }
 
     // setPosts([...posts, post]);
@@ -58,6 +62,23 @@ function App() {
       date: ''
     });
     nextId.current += 1;
+  }
+
+  let onRemove = id => {
+    setPosts(posts.filter(post => post.id !== id));
+  }
+
+  let onToggle = id => {
+    // setPosts(
+    //   posts.map(post =>
+    //     post.id === id ? { ...post, active: !post.active } : post
+    //   )
+    // )
+    setPosts(
+      posts.map(post =>
+        post.id === id ? { ...post, active: true } : {...post, active: false}
+      )
+    )
   }
 
   return (
@@ -78,7 +99,7 @@ function App() {
       />
 
       <Wrapper>
-        <List postsState={ [posts, setPosts] } />
+        <List postsState={ [posts, setPosts] } onRemove={ onRemove }  onToggle={ onToggle } />
       </Wrapper>
 
       <Modal />
