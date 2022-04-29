@@ -1,34 +1,27 @@
 import { useState, useRef } from 'react';
 
-function List(props) {
+function List({ postsState }) {
 
-  let [posts, setPost] = useState([
-    {
-      title : '나주 전망대',
-      date : '7월 8일',
-      id : 0
-    },
-    {
-      title : '전주 삼겹살 맛집',
-      date : '11월 3일',
-      id : 1
-    },
-    {
-      title : '군산 장미 칼국수',
-      date : '3월 1일',
-      id : 2
-    }
-  ]);
+  let [posts, setPosts] = postsState;
+
+  let [show, setShow] = useState({ isShow : false, buttonText : '리스트 보기' })
+  function listShow() {
+    var cloneShow = {...show};
+    cloneShow.isShow = !cloneShow.isShow;
+    if (cloneShow.isShow) cloneShow.buttonText = '리스트 닫기'
+    else cloneShow.buttonText = '리스트 보기'
+
+    setShow(cloneShow)
+  }
 
   return (
     <>
-      { props.isShow && <>
+      <button onClick={ listShow }>{ show.buttonText }</button><br/>
 
-        <h3>list name : { props.name }</h3>
+      { show.isShow && <>
         
-        <ChangePostsButtons postsState={ [posts, setPost] } />
-        <br/>
-        <InputPostTitle postsState={ [posts, setPost] } />
+        <ChangePostsButtons postsState={ [posts, setPosts] } /><br/>
+        <InputPostTitle postsState={ [posts, setPosts] } />
 
         { posts.map((post) => {
           return <Post post={ post } key={ post.id.toString() }/>
@@ -40,9 +33,9 @@ function List(props) {
   );
 }
 
-List.defaultProps = {
-  name: '이름없음'
-}
+// List.defaultProps = {
+//   name: '이름없음'
+// }
 
 
 function Post({ post }) {
@@ -56,6 +49,7 @@ function Post({ post }) {
     <div className='list'>
       <h3> { post.title } <span onClick={ numberUp }>👍</span>{ number }</h3>
       <p> { post.date } 발행</p>
+      <p> id: { post.id }</p>
       <hr/>
     </div>
   )
