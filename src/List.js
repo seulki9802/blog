@@ -2,18 +2,21 @@ import { useState } from 'react';
 
 function List(props) {
 
-  let [post, setPost] = useState([
+  let [posts, setPost] = useState([
     {
       title : '나주 전망대',
       date : '7월 8일',
+      id : 0
     },
     {
       title : '전주 삼겹살 맛집',
-      date : '11월 3일'
+      date : '11월 3일',
+      id : 1
     },
     {
       title : '군산 장미 칼국수',
-      date : '3월 1일'
+      date : '3월 1일',
+      id : 2
     }
   ]);
 
@@ -22,18 +25,15 @@ function List(props) {
       { props.isShow && <>
 
         <h3>list name : { props.name }</h3>
+        
+        <ChangePostsButtons postsState={ [posts, setPost] } />
 
-        {/* <button onClick={ changeTitle }>1번글 제목 제목 바꾸기</button>
-        <button onClick={ changePostArray }>1번글 2번글 순서 바꾸기</button> */}
-
-        <ChangePostButtons postState={ [post, setPost] } />
-
-        <Post post={ post[0] } />
-        <Post post={ post[1] } />
-        <Post post={ post[2] } />
-
+        { posts.map((post) => {
+          return <Post post={ post } key={ post.id.toString() }/>
+        }) }
 
       </> }
+
     </>
   );
 }
@@ -46,7 +46,6 @@ List.defaultProps = {
 function Post({ post }) {
 
   let [number, setNumber] = useState(0)
-
   function numberUp(){
     setNumber( number + 1 )
   }
@@ -60,27 +59,27 @@ function Post({ post }) {
   )
 }
 
-function ChangePostButtons({ postState }) {
-  let [post, setPost] = postState
+function ChangePostsButtons({ postsState }) {
+  let [posts, setPosts] = postsState
 
   function changeTitle() {
-    var clonePost = {...post};
-    clonePost[0].title = '나주 뷰 맛집';
-    setPost( clonePost );
+    var clonePosts = [...posts]
+    clonePosts[0].title = '나주 뷰 맛집';
+    setPosts( clonePosts );
   }
 
-  function changePostArray() {
-    var clonePost = {...post};
-    var clonePost00 = clonePost[0]
-    clonePost[0] = clonePost[1];
-    clonePost[1] = clonePost00;
-    setPost( clonePost )
+  function changePostsArray() {
+    var clonePosts = [...posts]
+    var clonePosts00 = clonePosts[0]
+    clonePosts[0] = clonePosts[1];
+    clonePosts[1] = clonePosts00;
+    setPosts( clonePosts )
   }
 
   return(
     <>
       <button onClick={ changeTitle }>1번글 제목 제목 바꾸기</button>
-      <button onClick={ changePostArray }>1번글 2번글 순서 바꾸기</button>
+      <button onClick={ changePostsArray }>1번글 2번글 순서 바꾸기</button>
     </>
   )
 }
