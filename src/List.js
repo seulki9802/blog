@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 function List(props) {
 
@@ -27,6 +27,8 @@ function List(props) {
         <h3>list name : { props.name }</h3>
         
         <ChangePostsButtons postsState={ [posts, setPost] } />
+        <br/>
+        <InputPostTitle postsState={ [posts, setPost] } />
 
         { posts.map((post) => {
           return <Post post={ post } key={ post.id.toString() }/>
@@ -80,6 +82,25 @@ function ChangePostsButtons({ postsState }) {
     <>
       <button onClick={ changeTitle }>1번글 제목 제목 바꾸기</button>
       <button onClick={ changePostsArray }>1번글 2번글 순서 바꾸기</button>
+    </>
+  )
+}
+
+function InputPostTitle({ postsState }) {
+  let [posts, setPosts] = postsState
+  const titleInput = useRef();
+
+  function changePostTitle() {
+    var inputTitle = titleInput.current.value
+    var clonePosts = [...posts];
+    clonePosts[2].title = inputTitle;
+    setPosts( clonePosts )
+  }
+
+  return(
+    <>
+      <input ref={ titleInput } />
+      <button onClick={ changePostTitle }>3번글 제목 입력해서 변경하기</button>
     </>
   )
 }
