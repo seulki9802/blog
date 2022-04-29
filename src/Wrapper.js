@@ -1,7 +1,8 @@
 function Wrapper({ children }) {
   const style = {
-    border: '2px solid black',
+    margin : '20px',
     padding: '16px',
+    border: '2px solid black'
   };
   return (
     <div style={style}>
