@@ -1,6 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 function List({ postsState, onRemove, onToggle }) {
+
+  useEffect( () => {
+    console.log("posts 컴포넌트가 변겨됨");
+
+    return () => {
+      console.log("posts 컴포턴트 변경끝?");
+    };
+  }, [postsState]);
 
   let [posts, setPosts] = postsState;
 
