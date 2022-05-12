@@ -1,76 +1,80 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-body{
-  /* 귀여운척 옛날 게임 같음 영어 */
-  /* font-family: 'Courier New', Courier, monospace; */
+.page {
+  height: 90vh;
+  width: 100vw;
+  text-align: center;
+}
 
-  /* 기본 폰트랑 한글은 별로 안 다름. 걍 좀 두껍, 영어 작아짐 */
-  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+.project {
+}
 
-  /* 한글똑같 영어 쥐가 좀 귀여워짐 */
-  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+.project img {
+  height: 40vh;
+}
 
-  /* 한글 아주 살짝 두꺼워짐 영어 간격이 넓어짐 깔끔> */
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.me {
+}
+
+.me img {
+  width: 90%;
+}
+
+.left {
+  width: 50%;
+  float: left;
+
+  background-color: #282c34;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.right {
+  padding-left: 5%;
+  padding-right: 5%;
+  width: 50%;
+  float: right;
+
+  background-color: #282c34;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
   
-  /* 볼드체같은디 영어만? */
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
-
-  /* 한글 궁서체같은 거 됨 근데 영어 멋있다 사전같음 */
-  /* font-family: 'Times New Roman', Times, serif; */
-
-  /* 한글비슷; */
-  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
-
-  /* 아니 한글 다똑같 */
-  /* font-family: Arial, Helvetica, sans-serif; */
-
-  /* 궁서체같은거 */
-  /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
-  /* font-family: Georgia, 'Times New Roman', Times, serif; */
-
-  /* 한글 비슷 영어는 되게 강해보임 */
-  /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
-  
-  /* ㅇㅇ비슷 영어는 커짐 */
-  /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
-
-  /* 영어 매우 예쁨 한글 망함 */
-  /* font-family: cursive; */
-  /* font-family: fantasy; */
-
-  /* 비슷, 영어는 되게 열심히 씀 */
-  /* font-family: monospace; */
-
-  /* ㅇㅇ, 깔끔 */
-  /* font-family: sans-serif; */
-
-  /* ㄱㅅㅊ */
-  /* font-family: serif; */
-
-  /* ㅇㅇ, 꺨끔 */
-  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
 }
 
 .black-nav {
+  height: 10vh;
+  width: 100vw;
   background: black;
-  /* width: 100%; */
   display: flex;
   color: white;
-  padding: 20px;
+  padding: 2vh;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 3.5vh;
 }
 
-.image-size {
-  height: 40vmin;
+ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+li {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  border : 0;
+  float: left;
 }
 
 .list {
