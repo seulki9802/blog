@@ -6,7 +6,7 @@ function List({ postsState, onRemove, onToggle }) {
     console.log("posts 컴포넌트가 변겨됨");
 
     return () => {
-      console.log("posts 컴포턴트 변경끝?");
+      console.log("posts 컴포턴트 변경끝");
     };
   }, [postsState]);
 

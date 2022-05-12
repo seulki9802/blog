@@ -1,10 +1,14 @@
 import { useState, useRef } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import List from './List';
 import Wrapper from './Wrapper';
 import InputSample from './InputSample';
+import CreatePost from './CeatePost';
+import RouterTest from './RouterTest';
+
 import './App.css';
 import seulki from './src_assets/seulki.JPG';
-import CreatePost from './CeatePost';
 
 function App() {
 
@@ -87,6 +91,16 @@ function App() {
       <Navbar />
       <Me />
 
+      <BrowserRouter>
+
+        <RouterTest />
+        <Routes>
+          <Route path="/test" element={ <Wrapper /> }></Route>
+        </Routes>
+
+      
+      </BrowserRouter>
+
       <Wrapper>
         <InputSample />
       </Wrapper>
@@ -111,15 +125,35 @@ function App() {
 function Navbar() {
   return(
     <div className="black-nav">
-      개발개발 블로그 blog BLOG Blog
+      유슬기의 포트폴리오
     </div>
   )
 }
 
 function Me() {
   return(
-    <div>
-      <img src={ seulki } className="image-size" alt="seulki" />
+    <div className='image-size'>
+
+      <div style={ { float: 'left', width: '50%' } }>
+        <img src={ seulki } className="image-size" alt="seulki" />
+      </div>
+
+      <div style={ { float: 'right', width: '50%' } }>
+        개발자 유슬기입니다 <hr/>
+        호기심이 많고 배우는 것을 즐기는 유슬기이다.
+        허니버터칩을 좋아하고 맑은 날, 비 오는 날을 좋아한다.
+        여행을 좋아하고 새로운 것을 발견하고 본인의 스타일로 체화하는 것을 좋아한다/
+        <hr/>
+        누구나 쓸 수 있는 방명록 <br/>
+        유슬기: 안녀하세요<br/>
+        김철수: 반갑습니다<br/>
+        <input/><button>send</button>
+        <hr/>
+        회원만 보낼 수 있는 쪽지
+        <button>쪽지보내기</button>
+
+      </div>
+
     </div>
   )
 }
