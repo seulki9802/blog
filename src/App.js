@@ -7,6 +7,8 @@ import Project from './Project'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
 function App() {
   return (
     <div className='App'>
@@ -18,10 +20,14 @@ function App() {
       <BrowserRouter>
         <Navbar />
 
-        <Routes>
-          <Route path='/me' element={ <Me /> }></Route>
-          <Route path='/project' element={ <Project /> }></Route>
-        </Routes>
+        <TransitionGroup>
+          <CSSTransition timeout={ 300 } classNames="fade">
+            <Routes>
+              <Route path='/me' element={ <Me /> }></Route>
+              <Route path='/project' element={ <Project /> }></Route>
+          </Routes>
+          </CSSTransition>
+        </TransitionGroup>
 
       </BrowserRouter>
     </div>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Carousel, Container } from 'react-bootstrap';
-import seulki from './src_assets/seulki.JPG';
+// import seulki from './src_assets/seulki.JPG';
 
 
 function Project() {
