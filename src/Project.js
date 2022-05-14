@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Carousel, Container } from 'react-bootstrap';
-// import seulki from './src_assets/seulki.JPG';
+import seulki from './src_assets/seulki.JPG';
 
 
 function Project() {
@@ -64,7 +64,7 @@ function Project() {
               <Carousel.Item key={ project.index} >
                 <img
                 // className="d-block w-100"
-                // src={ seulki }
+                src={ seulki }
                 alt={ project.title }
               />
                 <Carousel.Caption>

@@ -8,6 +8,7 @@ import Project from './Project'
 
 import { useState } from 'react';
 import './transitionStyle.css';
+import { isValidInputTimeValue } from "@testing-library/user-event/dist/utils";
 
 const duration = 500;
 const defaultStyle = {
@@ -24,33 +25,22 @@ const transitionStyles = {
   exited: { opacity: 0 },
 };
 function App() {
-  const [inProp, setInProp] = useState(false);
   return (
     <>
-      <div style={ {background: 'red'} }>
-        <button onClick={() => setInProp(!inProp)}>Click to Show</button>
-        <Transition in={inProp} timeout={300}>
-          {(state) => (
-            <div
-              style={{
-                ...defaultStyle,
-                ...transitionStyles[state]
-              }}
-            >
-              I'm a component that gets a Fade transition!
-              <Test />
-            </div>
-          )}
-        </Transition>
-        sdfasfssdfsadfasff
+      {/* <div style={ {background: 'red'} }>
+        <Example0 />
       </div>
 
       <div style={ {background: 'blue'} }>
-        <Example />
+        <Example1 />
       </div>
 
       <div style={ {background: 'yellow'} }>
         <Example2 />
+      </div> */}
+
+      <div style={ {background: 'yellow'} }>
+        <Example3 />
       </div>
 
     </>
@@ -63,7 +53,31 @@ function Test() {
     )
 }
 
-function Example() {
+function Example0() {
+  const [inProp, setInProp] = useState(false);
+
+  return(
+    <>
+      <button onClick={() => setInProp(!inProp)}>Click to Show</button>
+      <Transition in={inProp} timeout={300}>
+        {(state) => (
+          <div
+            style={{
+              ...defaultStyle,
+              ...transitionStyles[state]
+            }}
+          >
+            I'm a component that gets a Fade transition!
+            <Test />
+          </div>
+        )}
+      </Transition>
+      sdfasfssdfsadfasff
+    </>
+  )
+}
+
+function Example1() {
     const [showMessage, setShowMessage] = useState(false);
     return (
       <div>
@@ -110,6 +124,78 @@ function Example2() {
 
       </BrowserRouter>
     </div>
+  );
+}
+
+function Example3() {
+  const [state, setState] = useState(0);
+
+  const items = [
+    {
+      id : 0,
+      name : 'home ',
+      path : '/'
+    },
+    {
+      id : 1,
+      name : 'me ',
+      path : '/me'
+    },
+    {
+      id : 2,
+      name : 'project ',
+      path : '/project'
+    }
+  ]
+
+  function changeItem(e) {
+    setState(e.target.id)
+  }
+
+  console.log(state==1)
+
+  return (
+    <BrowserRouter>
+
+      { items.map((item) => {
+        return <Link key={ item.id } to={ item.path } onClick={ changeItem } id={ item.id }>{ item.name }</Link>
+      }) }
+
+
+
+      <SwitchTransition mode={"out-in"}>
+        <CSSTransition
+          key={ state }
+          addEndListener={ (node, done) => node.addEventListener("transitionend", done, false) }
+          classNames='fade'
+          timeout = { 250 }
+        >
+          <>
+          <div>
+  
+            <h3>{ state }</h3>
+
+            <Routes>
+              {/* <Route path='/me' element={ <Me />}></Route>
+              <Route path='/project' element={ <Project />}></Route> */}
+              {
+                state == 1
+                ? <Route path='/me' element={ <Me />}></Route>
+                : state == 2
+                ? <Route path='/project' element={ <Project />}></Route>
+                : null
+              }
+
+            </Routes>
+
+            
+          </div>
+
+          </>
+        </CSSTransition>
+      </SwitchTransition>
+
+    </BrowserRouter>
   );
 }
 
