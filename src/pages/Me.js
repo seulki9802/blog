@@ -1,4 +1,4 @@
-import seulki from './src_assets/seulki.JPG';
+import seulki from '../src_assets/seulki.JPG';
 
 function Me() {
   return (

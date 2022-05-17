@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 import { BrowserRouter, Routes, Route, Link, Switch } from 'react-router-dom';
 
-import Me from './Me';
-import Project from './Project';
-import Home from './Home';
+import Me from './pages/Me';
+import Project from './pages/Project';
+import Home from './pages/Home';
 
 
 import './App.css';
@@ -14,31 +14,10 @@ import { getElementError } from '@testing-library/react';
 
 function App() {
 
-  const [state, setState] = useState(0);
-
-  const pages = [
-    {
-      id : 0,
-      name : 'home',
-      path : '/',
-      element : <Home />
-    },
-    {
-      id : 1,
-      name : 'me',
-      path : '/me',
-      element : <Me />
-    },
-    {
-      id : 2,
-      name : 'project',
-      path : '/project',
-      element : <Project />
-    }
-  ]
+  const [state, setState] = useState('home');
 
   function changePage(e) {
-    setState(e.target.id)
+    setState(e.target.name)
   }
 
   return (
@@ -46,11 +25,11 @@ function App() {
       <BrowserRouter>
 
         <div className="black-nav">
-          유슬기의 포트폴리오
-          <ul>
-            { pages.map((page) => {
-              return <Link key={ page.id } to={ page.path } onClick={ changePage } id={ page.id }>{ page.name }</Link>
-            }) }
+          <h2>유슬기의 포폴</h2>
+          <ul onClick={ changePage }>
+            <Link to='/' name='home'>Home</Link>
+            <Link to='/me' name='me'>Me</Link>
+            <Link to='/project' name='project'>Project</Link>
           </ul>
         </div>
 
@@ -59,38 +38,26 @@ function App() {
             key={ state }
             addEndListener={ (node, done) => node.addEventListener("transitionend", done, false) }
             classNames='fade'
-            timeout = { 250 }
           >
-            <>
             <div>
-
               <h3> { state } </h3>
-
-              <Me ></Me>
-
-              {/* <Routes>
-
+              <Routes>
                 {
-                  pages.map((page) => {
-                    return state == page.id? <Route key={ page.id } path={ page.path } element={ page.element }></Route>: null
-                  })
+                  state === 'home'
+                  ? <Route path='/' element={ <Home /> } />
+                  : state === 'me'
+                  ? <Route path='/me' element={ <Me /> } />
+                  : state === 'project'
+                  ? <Route path='/project' element={ <Project /> } />
+                  : null
                 }
-
-              </Routes> */}
-
-              
+                {/* <Route path='/' element={ <Home /> } />
+                <Route path='/me' element={ <Me /> } />
+                <Route path='/project' element={ <Project /> } /> */}
+              </Routes>
             </div>
-
-            </>
           </CSSTransition>
         </SwitchTransition>
-
-        {/* <CSSTransition id='dd' in={ showPage } timeout={ 300 } classNames="fade" unmountOnExi>
-          <Routes>
-            <Route path='/me' element={ <Me /> }></Route>
-            <Route path='/project' element={ <Project /> }></Route>
-          </Routes>
-        </CSSTransition> */}
 
       </BrowserRouter>
 
